@@ -1,4 +1,4 @@
-/* MSEUF-CI Employees - YouTube-inspired List UI (2025–2026 style) */
+/* MSEUF-CI Employees CRUD - Modern & Clean Style */
 /* index.css */
 
 * {
@@ -8,164 +8,137 @@
 }
 
 body {
-    font-family: 'Roboto', 'Arial', sans-serif;
-    background-color: #0f0f0f;          /* YouTube dark theme background */
-    color: #f1f1f1;
-    line-height: 1.5;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f5f7fa;
+    color: #2d3748;
+    line-height: 1.6;
     min-height: 100vh;
-    padding: 24px 16px;
+    padding: 2rem 1.5rem;
 }
 
-/* Centered container like YT content area */
+/* Container / Layout */
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Heading */
 h1 {
-    font-size: 1.75rem;
+    font-size: 2.1rem;
     font-weight: 700;
-    color: #ffffff;
-    margin: 0 0 32px;
+    color: #2b6cb0;           /* MSEUF blue-ish tone */
+    margin-bottom: 2rem;
     text-align: center;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.5px;
+    position: relative;
 }
 
-/* Main list container – like YT video grid/list area */
+h1::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background: #2b6cb0;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Employee List */
 #content {
     list-style: none;
     width: 100%;
-    max-width: 960px;                    /* Wider like YT desktop view */
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px 20px;
-    padding: 0;
-}
-
-/* Each employee card – styled like a YouTube video card */
-#content li {
-    background: #0f0f0f;
+    max-width: 620px;
+    background: white;
     border-radius: 12px;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.08),
+        0 5px 10px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
-    position: relative;
-    cursor: pointer;
+    margin-bottom: 2rem;
 }
 
-#content li:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-}
-
-/* Thumbnail / avatar placeholder area (like video thumbnail) */
-#content li::before {
-    content: "";
-    display: block;
-    padding-top: 56.25%;                /* 16:9 aspect ratio – YouTube video ratio */
-    background: linear-gradient(135deg, #272727, #1f1f1f);
-    position: relative;
-}
-
-/* You can later replace ::before with real <img> if you add profile photos */
-#content li img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;                      /* hidden until you add real images */
-}
-
-/* Employee info – like video metadata below thumbnail */
-.employee-info {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.employee-name {
+/* List Items */
+#content li {
+    padding: 1.1rem 1.8rem;
+    border-bottom: 1px solid #edf2f7;
     font-size: 1.05rem;
-    font-weight: 500;
-    color: #ffffff;
-    line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.employee-role,
-.employee-email {
-    font-size: 0.875rem;
-    color: #aaaaaa;
-}
-
-/* Small channel-like avatar circle (optional – if you add profile pics later) */
-.avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #3ea6ff;                /* YouTube blue accent */
-    color: white;
+    color: #2d3748;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1rem;
-    margin-right: 12px;
-    flex-shrink: 0;
+    gap: 0.8rem;
+    transition: all 0.15s ease;
+    position: relative;
 }
 
-/* Make it look more like YT list item (horizontal layout alternative) */
-/* Uncomment if you prefer classic list instead of card grid */
-/*
-#content {
-    display: block;
-}
-
-#content li {
-    display: flex;
-    align-items: flex-start;
-    padding: 12px 0;
-    border-bottom: 1px solid #272727;
-}
-
+/* Hover effect */
 #content li:hover {
-    background: #181818;
+    background-color: #f7fafc;
+    transform: translateX(8px);
+    color: #2b6cb0;
 }
 
+/* Last item - no border */
+#content li:last-child {
+    border-bottom: none;
+}
+
+/* Add subtle number / index (optional enhancement) */
 #content li::before {
-    content: "";
-    width: 160px;
-    height: 90px;
-    background: #272727;
-    border-radius: 8px;
+    content: counter(list-item);
+    counter-increment: list-item;
+    display: inline-block;
+    width: 2.2rem;
+    height: 2.2rem;
+    line-height: 2.2rem;
+    text-align: center;
+    background: #ebf8ff;
+    color: #2b6cb0;
+    border-radius: 50%;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-right: 1rem;
     flex-shrink: 0;
-    margin-right: 16px;
 }
-*/
 
-/* Empty state – YouTube-like "no results" feel */
+/* Empty state */
 #content:empty::before {
     content: "No employees found";
     display: block;
-    padding: 80px 20px;
+    padding: 3rem 1rem;
     text-align: center;
-    color: #717171;
-    font-size: 1.25rem;
+    color: #718096;
+    font-size: 1.1rem;
+    font-style: italic;
 }
 
-/* Responsive – collapse to single column on mobile */
-@media (max-width: 600px) {
-    #content {
-        grid-template-columns: 1fr;
-        gap: 16px;
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
     }
     
-    h1 {
-        font-size: 1.5rem;
+    #content li {
+        padding: 1rem 1.3rem;
+        font-size: 1rem;
     }
+    
+    #content li::before {
+        width: 1.9rem;
+        height: 1.9rem;
+        line-height: 1.9rem;
+        font-size: 0.9rem;
+        margin-right: 0.9rem;
+    }
+}
+
+/* Optional loading state (if you add later) */
+body.loading #content::before {
+    content: "Loading employees...";
+    display: block;
+    padding: 4rem 1rem;
+    text-align: center;
+    color: #4a5568;
 }
