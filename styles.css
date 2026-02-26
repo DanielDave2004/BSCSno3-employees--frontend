@@ -1,0 +1,171 @@
+/* MSEUF-CI Employees - YouTube-inspired List UI (2025–2026 style) */
+/* index.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    background-color: #0f0f0f;          /* YouTube dark theme background */
+    color: #f1f1f1;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 24px 16px;
+}
+
+/* Centered container like YT content area */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 32px;
+    text-align: center;
+    letter-spacing: -0.3px;
+}
+
+/* Main list container – like YT video grid/list area */
+#content {
+    list-style: none;
+    width: 100%;
+    max-width: 960px;                    /* Wider like YT desktop view */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px 20px;
+    padding: 0;
+}
+
+/* Each employee card – styled like a YouTube video card */
+#content li {
+    background: #0f0f0f;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    position: relative;
+    cursor: pointer;
+}
+
+#content li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+/* Thumbnail / avatar placeholder area (like video thumbnail) */
+#content li::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%;                /* 16:9 aspect ratio – YouTube video ratio */
+    background: linear-gradient(135deg, #272727, #1f1f1f);
+    position: relative;
+}
+
+/* You can later replace ::before with real <img> if you add profile photos */
+#content li img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;                      /* hidden until you add real images */
+}
+
+/* Employee info – like video metadata below thumbnail */
+.employee-info {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.employee-name {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.employee-role,
+.employee-email {
+    font-size: 0.875rem;
+    color: #aaaaaa;
+}
+
+/* Small channel-like avatar circle (optional – if you add profile pics later) */
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #3ea6ff;                /* YouTube blue accent */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+/* Make it look more like YT list item (horizontal layout alternative) */
+/* Uncomment if you prefer classic list instead of card grid */
+/*
+#content {
+    display: block;
+}
+
+#content li {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid #272727;
+}
+
+#content li:hover {
+    background: #181818;
+}
+
+#content li::before {
+    content: "";
+    width: 160px;
+    height: 90px;
+    background: #272727;
+    border-radius: 8px;
+    flex-shrink: 0;
+    margin-right: 16px;
+}
+*/
+
+/* Empty state – YouTube-like "no results" feel */
+#content:empty::before {
+    content: "No employees found";
+    display: block;
+    padding: 80px 20px;
+    text-align: center;
+    color: #717171;
+    font-size: 1.25rem;
+}
+
+/* Responsive – collapse to single column on mobile */
+@media (max-width: 600px) {
+    #content {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+}
