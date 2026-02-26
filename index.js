@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
 function getUsers() {
     let html=""
     //FETCH API
-    fetch('https://api.sampleapis.com/coffee/hot',{mode: 'cors'})
+    fetch('https://bscsno3-employees.onrender.com/api/users',{mode: 'cors'})
     .then(response=>{
         console.log(response);
         return response.json();
@@ -24,3 +24,4 @@ function getUsers() {
     })
 
 }
+
