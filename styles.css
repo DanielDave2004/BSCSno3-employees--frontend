@@ -1,144 +1,251 @@
-/* MSEUF-CI Employees CRUD - Modern & Clean Style */
-/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ─── VARIABLES ─────────────────────────────────────────────── */
+:root {
+  --bg:         #f4f6f9;
+  --surface:    #ffffff;
+  --border:     #dde1ea;
+  --accent:     #1a56db;
+  --accent-dim: #dbeafe;
+  --danger:     #dc2626;
+  --danger-dim: #fee2e2;
+  --text:       #111827;
+  --muted:      #6b7280;
+  --input-bg:   #f9fafb;
+  --radius:     10px;
+  --font:       'Inter', sans-serif;
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ─── RESET ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── BASE ───────────────────────────────────────────────────── */
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: #f5f7fa;
-    color: #2d3748;
-    line-height: 1.6;
-    min-height: 100vh;
-    padding: 2rem 1.5rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  min-height: 100vh;
+  padding: 3rem 2rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Container / Layout */
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Heading */
+/* ─── HEADING ────────────────────────────────────────────────── */
 h1 {
-    font-size: 2.1rem;
-    font-weight: 700;
-    color: #2b6cb0;           /* MSEUF blue-ish tone */
-    margin-bottom: 2rem;
-    text-align: center;
-    letter-spacing: -0.5px;
-    position: relative;
+  font-family: var(--font);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 2.5rem;
+  color: var(--text);
+  text-align: center;
 }
 
 h1::after {
-    content: '';
-    position: absolute;
-    width: 80px;
-    height: 4px;
-    background: #2b6cb0;
-    bottom: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
+  content: '';
+  display: block;
+  margin: 0.5rem auto 0;
+  width: 3rem;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
 }
 
-/* Employee List */
+/* ─── LAYOUT ─────────────────────────────────────────────────── */
+#container {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* ─── FORM PANEL ─────────────────────────────────────────────── */
+#form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 280px;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+input[type="text"],
+select {
+  display: block;
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  padding: 0.6rem 0.8rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  appearance: none;
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  cursor: pointer;
+}
+
+select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* ─── BUTTONS ────────────────────────────────────────────────── */
+button {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+#add {
+  background: var(--accent);
+  color: #ffffff;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#add:hover {
+  background: #1e40af;
+  box-shadow: 0 4px 14px rgba(26, 86, 219, 0.3);
+  transform: translateY(-1px);
+}
+
+#add:active { transform: translateY(0); }
+
+#update {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+#update:hover {
+  background: var(--accent-dim);
+  transform: translateY(-1px);
+}
+
+/* ─── EMPLOYEE LIST ───────────────────────────────────────────── */
 #content {
-    list-style: none;
-    width: 100%;
-    max-width: 620px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 
-        0 10px 25px rgba(0, 0, 0, 0.08),
-        0 5px 10px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    margin-bottom: 2rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 280px;
+  max-width: 520px;
+  width: 100%;
 }
 
-/* List Items */
 #content li {
-    padding: 1.1rem 1.8rem;
-    border-bottom: 1px solid #edf2f7;
-    font-size: 1.05rem;
-    color: #2d3748;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    transition: all 0.15s ease;
-    position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  animation: slideIn 0.3s ease both;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
 }
 
-/* Hover effect */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 #content li:hover {
-    background-color: #f7fafc;
-    transform: translateX(8px);
-    color: #2b6cb0;
+  border-color: #b0b8cc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 
-/* Last item - no border */
-#content li:last-child {
-    border-bottom: none;
+/* ─── ACTION BUTTONS GROUP ───────────────────────────────────── */
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
 }
 
-/* Add subtle number / index (optional enhancement) */
-#content li::before {
-    content: counter(list-item);
-    counter-increment: list-item;
-    display: inline-block;
-    width: 2.2rem;
-    height: 2.2rem;
-    line-height: 2.2rem;
-    text-align: center;
-    background: #ebf8ff;
-    color: #2b6cb0;
-    border-radius: 50%;
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-right: 1rem;
-    flex-shrink: 0;
+/* action links inside list */
+#content a {
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font);
+  padding: 0.3rem 0.75rem;
+  border-radius: 5px;
+  transition: background var(--transition), color var(--transition);
+  flex-shrink: 0;
 }
 
-/* Empty state */
-#content:empty::before {
-    content: "No employees found";
-    display: block;
-    padding: 3rem 1rem;
-    text-align: center;
-    color: #718096;
-    font-size: 1.1rem;
-    font-style: italic;
+/* Update link */
+#content a[onClick*="updateMember"] {
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  background: transparent;
 }
 
-/* Responsive adjustments */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.8rem;
-    }
-    
-    #content li {
-        padding: 1rem 1.3rem;
-        font-size: 1rem;
-    }
-    
-    #content li::before {
-        width: 1.9rem;
-        height: 1.9rem;
-        line-height: 1.9rem;
-        font-size: 0.9rem;
-        margin-right: 0.9rem;
-    }
+#content a[onClick*="updateMember"]:hover {
+  background: var(--accent-dim);
 }
 
-/* Optional loading state (if you add later) */
-body.loading #content::before {
-    content: "Loading employees...";
-    display: block;
-    padding: 4rem 1rem;
-    text-align: center;
-    color: #4a5568;
+/* Delete link */
+#content a[onClick*="deleteMember"] {
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  background: transparent;
+}
+
+#content a[onClick*="deleteMember"]:hover {
+  background: var(--danger-dim);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  body { padding: 1.5rem 1rem; }
+  #container { flex-direction: column; align-items: center; }
+  #form { max-width: 100%; }
 }
