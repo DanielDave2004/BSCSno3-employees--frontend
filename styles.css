@@ -100,7 +100,7 @@ select {
   color: var(--text);
   font-family: var(--font);
   font-size: 14px;
-  padding: 0.6rem 0.8rem;
+  padding: 0rem 0.8rem;
   outline: none;
   transition: border-color var(--transition), box-shadow var(--transition);
 }
@@ -256,3 +256,4 @@ tr:hover {
     min-width: 100%;
   }
 }
+
