@@ -47,10 +47,10 @@ function getUsers(){
                 <td>${element.gender}</td>
                 <td>
                 <div class="actions">
-                    <a class="btn-update" href="javascript:void(0)" onClick="updateMember(${e.id})">
+                    <a class="btn-update" href="javascript:void(0)" onClick="updateMember(${element.id})">
                       <i class="fas fa-edit"></i>
                     </a>
-                    <a class="btn-delete" href="javascript:void(0)" onClick="deleteMember(${e.id})">
+                    <a class="btn-delete" href="javascript:void(0)" onClick="deleteMember(${element.id})">
                       <i class="fas fa-trash"></i>
                     </a>
                 </div>
@@ -128,6 +128,7 @@ update.addEventListener('click',()=>{
     location.reload();
 
 })
+
 
 
 
