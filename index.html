@@ -4,54 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSEUF-CI Employees CRUD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>MSEUF-CI Employees CRUD</h1>
-    <div id="container" style="display: flex;">
-        <div id="form" style="padding-right: 5rem; display: inline;">
-            <label> First Name </label>
-            <input type="text" name="fname" id="fname">
+    <div id="container">
 
-            <label> Last Name </label>
-            <input type="text" name="lname" id="lname">
+        <!-- ── FORM ── -->
+        <div id="form">
+            <label>First Name</label>
+            <input type="text" name="fname" id="fname" placeholder="e.g. Juan">
 
-            <label> Email </label>
-            <input type="text" name="email" id="email">
+            <label>Last Name</label>
+            <input type="text" name="lname" id="lname" placeholder="e.g. dela Cruz">
 
-            <label> Gender </label>
+            <label>Email</label>
+            <input type="text" name="email" id="email" placeholder="e.g. juan@mseuf.edu.ph">
+
+            <label>Gender</label>
             <select name="gender" id="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
             </select>
-            <button id="add"> Add Employee </button>
-            <button id="update"> Update </button>
+
+            <button id="add" onclick="addMember()">Add Employee</button>
+            <button id="update" onclick="confirmUpdate()">Update</button>
             <input type="hidden" id="ID">
         </div>
-    <div>
 
-    <table id="content">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Gender</th>
-            <th>IP</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody id="tableBody">
+        <!-- ── TABLE ── -->
+        <div id="table-wrapper">
+            <table id="content">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>IP Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr class="state-row">
+                        <td colspan="7">Loading employees…</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    </tbody>
-    </table>
+    </div>
 
-
-
-    <script src="script.js"> </script>
+    <script src="script.js"></script>
 </body>
-
 </html>
-
