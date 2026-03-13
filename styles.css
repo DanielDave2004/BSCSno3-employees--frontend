@@ -156,18 +156,20 @@ button {
   background: var(--accent-dim);
 }
 
-─── TABLE WRAPPER ────────────────────────────────────────────
+/* ─── TABLE WRAPPER ──────────────────────────────────────────── */
 #table-wrapper {
   flex: 1;
-  overflow-x: auto;
+  min-width: 0;
 }
 
 /* ─── TABLE ─────────────────────────────────────────────────── */
 table {
+  width: 500px;
   border-collapse: collapse;
   background: var(--surface);
   border-radius: var(--radius);
   overflow: hidden;
+  min-width: 1000px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.07);
 }
 
